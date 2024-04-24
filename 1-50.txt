@@ -1,0 +1,53 @@
+Exam AZ-104 topic 5 question 109 discussion
+https://www.examtopics.com/discussions/microsoft/view/94044-exam-az-104-topic-5-question-109-discussion/
+
+=> The firewall, VNet, and the public IP address all must be in the same resource group, region.
+
+Exam AZ-104 topic 2 question 31 discussion
+https://www.examtopics.com/discussions/microsoft/view/62981-exam-az-104-topic-2-question-31-discussion/
+
+Đưa ra các group với group type, membership type khác nhau.
+Tạo user với các cấu hình.
+Hỏi xem user đó thuộc group nào?
+
+=> Chỉ có membership là "Dynamic user" mới tự động thêm các user thỏa mãn điều vào group.
+=> Membership "Assigned" cần phải thêm thủ công. Nên các user chắc chắn sẽ không tự chui vào group này được
+
+Exam AZ-104 topic 4 question 95 discussion
+https://www.examtopics.com/discussions/microsoft/view/119710-exam-az-104-topic-4-question-95-discussion/
+
+Có sẵn 2 RG ở 2 location.
+Có 1 template dùng để tạo 4 RG, có chỉ định location trong file, có 2 RG bị trùng tên
+Dùng command deploy template nhưng truyền param Location khác với trong file
+
+=> Trong cùng subscription, RG không thể tạo trùng tên, nên mặc dù template define 4 cái RG thì chỉ tạo được 2
+=> RG được tạo ra sẽ sử dụng location được khai báo trong file, NOT from command param
+
+Exam AZ-104 topic 5 question 79 discussion
+https://www.examtopics.com/discussions/microsoft/view/63586-exam-az-104-topic-5-question-79-discussion/
+
+Connect site-to-site, sử dụng Azure virtual WAN. Site-2-site có thể là giữa các datacenters, hoặc giữa datacenter với virtual network
+Các step:
+1. Create virtual WAN
+2. Create virtual hub
+3. Create VPN sites
+4. Connect VPN sites to virtual hub
+5. Connect a VNet to the virtual hub (trong câu này thì không áp dụng cho VNet, nên step này không cần)
+
+Exam AZ-104 topic 2 question 93 discussion
+https://www.examtopics.com/discussions/microsoft/view/119599-exam-az-104-topic-2-question-93-discussion/
+
+(
+    (
+        !(ActionMatches{'Microsoft.Storage/storageAccounts/blobServices/containers/blobs/read'})
+    )
+    OR 
+    (
+        @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:name]
+        StringEquals 'blobs-example-container'
+    )
+)
+
+Giải thích: nếu thực hiện read thì user này chỉ có thể read từ containers: blobs-example-container
+
+Ví dụ: user này thực hiện write, mệnh đề đầu tiên sẽ là !(false) => cả điều kiện true => người này vẫn có thể write bình thường
